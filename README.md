@@ -15,7 +15,7 @@ $ chdistro --help
 chdistro ROS_DISTRO [WORKSPACE_DIR]
 ```
 
-## ROS 2
+### ROS 2
 
 ```sh
 $ chdistro dashing
@@ -37,7 +37,7 @@ ROS_LOCALHOST_ONLY=1
 ROS_WORKSPACE=/home/youtalk/ros/dashing
 ```
 
-## ROS 1
+### ROS 1
 
 ```sh
 $ chdistro melodic

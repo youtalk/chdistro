@@ -1,6 +1,12 @@
 #!/bin/bash
 
 chdistro() {
+    # Help
+    if [ $# -e 0] || [[ $1 = "--help" ]]; then
+        echo "chdistro ROS_DISTRO [WORKSPACE_DIR]"
+        exit
+    fi
+
     # Shell
     suffix=".bash"
     if [[ $SHELL = "/bin/zsh" ]]; then

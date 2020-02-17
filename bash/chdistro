@@ -39,9 +39,9 @@ elif [ $1 = "melodic" ] || [ $1 = "kinetic" ]; then
     if [ -e $workspace/devel ]; then
         . $workspace/devel/setup$suffix
         export ROS_WORKSPACE=$workspace
-        pushd $workspace
+        pushd $workspace > /dev/null
             catkin source
-        popd
+        popd > /dev/null
     fi
 fi
 env | grep ROS

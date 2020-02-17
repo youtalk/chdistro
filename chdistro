@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Help
 if [ $# -eq 0 ] || [ $1 = "--help" ]; then

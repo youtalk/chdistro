@@ -1,50 +1,49 @@
 #!/bin/bash
 
-chdistro() {
-    # Help
-    if [ $# -e 0] || [[ $1 = "--help" ]]; then
-        echo "chdistro ROS_DISTRO [WORKSPACE_DIR]"
-        exit
-    fi
+# Help
+if [ $# -eq 0 ] || [[ $1 = "--help" ]]; then
+    echo "chdistro ROS_DISTRO [WORKSPACE_DIR]"
+    exit
+fi
 
-    # Shell
-    suffix=".bash"
-    if [[ $SHELL = "/bin/zsh" ]]; then
-        suffix=".zsh"
-    fi
-    echo $suffix
+# Shell
+suffix=".bash"
+if [[ $SHELL = "/bin/zsh" ]]; then
+    suffix=".zsh"
+fi
+echo $suffix
 
-    # Worksspace
-    workspace="$HOME/ros/$1"
-    if [ $# -ne 2 ]; then
-        workspace=$2
-    fi
-    echo $workspace
+# Worksspace
+workspace="$HOME/ros/$1"
+if [ $# -ne 2 ]; then
+    workspace=$2
+fi
+echo $workspace
 
-    # ROS2
-    if [[ $1 = "eloquent" ]] || [[ $1 = "dashing" ]]; then
-        source /opt/ros/$1/setup$suffix
-        export ROS_HOME=~/.ros
-        export ROS_LOCALHOST_ONLY=1
-        source /opt/ros/$1/share/ros2cli/environment/ros2-argcomplete$suffix
-        if [ -e $workspace/install ]; then
-            . $workspace/install/local_setup$suffix
-            export ROS_WORKSPACE=$workspace
-        fi
+# ROS2
+if [[ $1 = "eloquent" ]] || [[ $1 = "dashing" ]]; then
+    source /opt/ros/$1/setup$suffix
+    export ROS_HOME=~/.ros
+    export ROS_LOCALHOST_ONLY=1
+    source /opt/ros/$1/share/ros2cli/environment/ros2-argcomplete$suffix
+    if [ -e $workspace/install ]; then
+        . $workspace/install/local_setup$suffix
+        export ROS_WORKSPACE=$workspace
+    fi
     # ROS1
-    elif [[ $1 = "melodic" ]] || [[ $1 = "kinetic" ]]; then
-        source /opt/ros/$1/setup$suffix
-        export ROS_HOME=~/.ros
-        source `catkin locate --shell-verbs`
-        if [ -e $workspace/devel ]; then
-            . $workspace/devel/setup$suffix
-            export ROS_WORKSPACE=$workspace
-            pushd $workspace
-            catkin source
-            popd
-        fi
+elif [[ $1 = "melodic" ]] || [[ $1 = "kinetic" ]]; then
+    source /opt/ros/$1/setup$suffix
+    export ROS_HOME=~/.ros
+    source `catkin locate --shell-verbs`
+    if [ -e $workspace/devel ]; then
+        . $workspace/devel/setup$suffix
+        export ROS_WORKSPACE=$workspace
+        pushd $workspace
+        catkin source
+        popd
     fi
-    env | grep ROS
-}
-
-chdistro
+else
+    echo "invalid ROS_DISTRO"
+    exit 1
+fi
+env | grep ROS

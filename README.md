@@ -22,9 +22,8 @@ $ chdistro dashing
 ROS_DISTRO=dashing
 ROS_PYTHON_VERSION=3
 ROS_VERSION=2
-ROS_HOME=/home/youtalk/.ros
+ROS_HOME=/home/$USER/.ros
 ROS_LOCALHOST_ONLY=1
-ROS_WORKSPACE=/home/youtalk/ros/dashing
 ```
 
 ```sh
@@ -32,9 +31,9 @@ $ chdistro dashing ~/ros/dashing
 ROS_DISTRO=dashing
 ROS_PYTHON_VERSION=3
 ROS_VERSION=2
-ROS_HOME=/home/youtalk/.ros
+ROS_HOME=/home/$USER/.ros
 ROS_LOCALHOST_ONLY=1
-ROS_WORKSPACE=/home/youtalk/ros/dashing
+ROS_WORKSPACE=/home/$USER/ros/dashing
 ```
 
 ### ROS 1
